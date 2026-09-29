@@ -99,6 +99,8 @@ breakpoints with the raster line / cycle shown (`LIN CYC`), memory pokes. So the
 2. `tools/timeline.py` / `tools/vicetool.py` run the PRG and take screenshots at chosen moments,
 3. look at the pictures (or analyse pixels with Pillow), fix, repeat.
 
+Making a video of the demo (frame-exact, with audio): [docs/video-recording.md](docs/video-recording.md).
+
 Other helpers: `tools/sid2bin.py` (strips the PSID header, prints load/init/play), `tools/profile.py` (py65 emulation of the per-frame update code, cycles per routine and per frame),
 `tools/trace.py` (stop at a cell, show raster line/cycle), `tools/tune_stab.py` (search the stabiliser delays for
 zero jitter using a calibration stripe), `tools/imgcols.py`.
