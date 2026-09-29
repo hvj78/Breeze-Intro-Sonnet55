@@ -34,6 +34,18 @@ PAL only (the timing is cycle exact; on an NTSC machine it prints a message and 
 * **Music:** *Magic* by Gábor Csordás (Carlos) / Breeze, 1996, from the High Voltage SID Collection
   (`MUSICIANS/C/Carlos_Breeze/Magic.sid`), relocated as raw code to `$1000` (init `$1000`, play `$1003`).
 
+## Try it without any build tools
+
+Ready-made binaries are in [`release/`](release/):
+
+* `breeze-intro.prg` – `x64sc -autostartprgmode 1 -autostart breeze-intro.prg` (or drag it onto VICE);
+  on a real C64 / other emulators: `LOAD"BREEZE-INTRO.PRG",8,1` then `RUN`
+* `breeze-intro.d64` – disk image containing the intro as `BREEZE`: `LOAD"BREEZE",8,1` then `RUN`
+  (or attach it in VICE with autostart)
+
+PAL only. The `.prg` is about 49 KB; loading through an emulated 1541 takes a while, VICE's
+"inject" autostart mode (`-autostartprgmode 1`) starts it instantly.
+
 ## Build & run
 
 ```sh
