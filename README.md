@@ -3,12 +3,14 @@
 A classic Commodore 64 intro for the demo group **Breeze**, written in 6510 assembly
 (64tass) and developed and tested against the VICE emulator (`x64sc` 3.10, Apple-silicon Mac).
 
+**▶ Watch the demo on YouTube: https://youtu.be/YgijezaRHR4**
+
 ```
 make run          # build + start in VICE            (or ./run.sh)
 make disk         # optional: build/breeze.d64 with the intro on it
 ```
 
-![screenshot](docs/screenshot.png)
+[![screenshot – click to watch the video](docs/screenshot.png)](https://youtu.be/YgijezaRHR4)
 
 Press **SPACE** to leave: picture and music fade out, the machine resets to BASIC.
 PAL only (the timing is cycle exact; on an NTSC machine it prints a message and returns).
