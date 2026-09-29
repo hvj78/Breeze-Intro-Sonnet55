@@ -1,0 +1,6 @@
+# build products and local tooling
+build/
+.venv/
+__pycache__/
+*.pyc
+.DS_Store

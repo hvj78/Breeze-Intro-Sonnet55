@@ -1,0 +1,4 @@
+# only needed to (re)generate the graphics assets and for the tools/ helpers
+pillow
+numpy
+py65
