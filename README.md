@@ -13,6 +13,24 @@ make disk         # optional: build/breeze.d64 with the intro on it
 Press **SPACE** to leave: picture and music fade out, the machine resets to BASIC.
 PAL only (the timing is cycle exact; on an NTSC machine it prints a message and returns).
 
+## About this project – a Claude Code experiment
+
+This intro is an **experiment** to test the capabilities of **Claude Code with Sonnet 5.5 (High effort)** using
+**single-shot prompting**: the whole intro – research, code, tools, debugging in VICE, music, graphics – was
+developed from the one prompt below, without any further instructions about the intro itself (the
+later requests only concerned publishing this repository: creating it, pushing the source and adding the
+prebuilt `.prg`/`.d64`).
+
+According to the author (hvj78), the result is mind-blowing and far exceeds what Opus 5 was able to do
+with the same kind of task at Max effort at the end of August, just a month earlier.
+
+The original prompt, verbatim:
+
+> I want to make a classic Commodore 64 intro. You know, the regular thing with a big Breeze logo on the upper side of the screen (Breeze is the name of my C64 demogroup). This logo should move up and down with some sinus based moving algorithm. I would be happy to see the logo moving not just up-down but also left-right. It would be nice to also make it wave. These effects could follow each other, extending or adding on top of each other, like first displaying Breeze logo with some fading effect, after that, start moving up-down, after that also add the left-right move and finally the wave effect. I would like to have a scroller also on the screen with borders open and the scroller should go out to the borders also. The scroller should have a 2x2 chars in size and have a nice charset. The Scroller should start at a static location but later it should start moving up-down a little, 2-3 chars in heights. I also would like to see some nice raster bars on the screen. Music should be a SID file from Carlos/Breeze - search for one online. The intro should have a nice fade out after pressing space key. Make a research online to learn, how to code Commodore 64 intros, what are the specifics of this retro machine, how to write the assembly for 6510 CPU, how to compile it, how to test it using VICE on my Macbook Air M1 machine locally. It would be great to make this development in a way, that you write the code, compile it, run the VICE, check the screen with computer use, and based on what you see in the VICE emulator, you fix the issues until the intro looks nice.
+
+(No computer-use tool was available in that session, so "checking the screen" was done with VICE's remote-monitor
+screenshots instead – see *How the development loop worked* below.)
+
 ## What you see
 
 | time (approx.) | what happens |
