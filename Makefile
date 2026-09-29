@@ -24,8 +24,15 @@ build/intro.prg: src/intro.asm src/update.asm src/data.asm build/logo_charset.bi
 	$(ASM) $(ASMFLAGS) -l build/intro.lbl -L build/intro.lst -o $@ src/intro.asm
 	$(PY) tools/cyc.py build/intro.lst
 
-disk: build/intro.prg
-	c1541 -format "breeze,26" d64 build/breeze.d64 -write build/intro.prg breeze >/dev/null
+# self-extracting version (Exomizer 3: brew install exomizer).  The screen is blanked and the
+# border set to black while it decrunches (~2.7 s); it then starts the intro at $0810.
+build/breeze.prg: build/intro.prg
+	exomizer sfx sys -q -n -s "$$(printf 'lda #$$0b\nsta $$d011\nlda #0\nsta $$d020')" $< -o $@
+
+packed: build/breeze.prg
+
+disk: build/breeze.prg
+	c1541 -format "breeze,26" d64 build/breeze.d64 -write build/breeze.prg breeze >/dev/null
 
 run: build/intro.prg
 	x64sc -VICIIborders 0 -autostartprgmode 1 -autostart build/intro.prg
@@ -33,4 +40,4 @@ run: build/intro.prg
 clean:
 	rm -rf build
 
-.PHONY: all run clean disk
+.PHONY: all run clean packed disk

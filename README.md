@@ -54,15 +54,24 @@ screenshots instead – see *How the development loop worked* below.)
 
 ## Try it without any build tools
 
-Ready-made binaries are in [`release/`](release/):
+Ready-made binaries (self-extracting, see [compression](docs/compression.md)) are in [`release/`](release/):
 
 * `breeze-intro.prg` – `x64sc -autostartprgmode 1 -autostart breeze-intro.prg` (or drag it onto VICE);
   on a real C64 / other emulators: `LOAD"BREEZE-INTRO.PRG",8,1` then `RUN`
 * `breeze-intro.d64` – disk image containing the intro as `BREEZE`: `LOAD"BREEZE",8,1` then `RUN`
   (or attach it in VICE with autostart)
 
-PAL only. The `.prg` is about 49 KB; loading through an emulated 1541 takes a while, VICE's
-"inject" autostart mode (`-autostartprgmode 1`) starts it instantly.
+PAL only. The `.prg` is 9.5 KB; after loading it needs about 3 seconds to unpack itself. VICE's "inject"
+autostart mode (`-autostartprgmode 1`) starts a PRG instantly.
+
+## Compression (self-extracting)
+
+The released files are **self-extracting**: `make packed` crunches the 49 KB program image to **9.5 KB**
+(38 instead of 196 disk blocks) with Exomizer 3 at build time; the C64 only runs the decruncher (~2.7 s), then the
+intro starts. `LOAD"BREEZE",8` / `RUN` works as usual. The unpacked development build is not distributed.
+
+Full write-up – which crunchers the C64 scene uses, benchmark of Exomizer / ZX0 / TSCrunch on this program,
+what the 9.5 KB consist of, decrunch time, byte-for-byte verification: **[docs/compression.md](docs/compression.md)**.
 
 ## Build & run
 

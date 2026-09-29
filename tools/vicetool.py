@@ -58,6 +58,21 @@ class Vice:
         time.sleep(0.2)
         return out
 
+    def dump(self, a, e, chunk=0x400):
+        """read memory a..e (inclusive) through the monitor, returns bytes"""
+        import re
+        out = bytearray()
+        for s0 in range(a, e + 1, chunk):
+            e0 = min(e, s0 + chunk - 1)
+            txt = self.cmd(f'm {s0:04x} {e0:04x}')
+            got = {}
+            for m in re.finditer(r'>C:([0-9a-f]{4})((?:\s+[0-9a-f]{2}){1,4}(?:\s+[0-9a-f]{2}){0,12})', txt):
+                addr = int(m.group(1), 16)
+                for i, h in enumerate(m.group(2).split()):
+                    got[addr + i] = int(h, 16)
+            out += bytes(got.get(x, 0xEE) for x in range(s0, e0 + 1))
+        return bytes(out)
+
     def go(self):
         self.s.sendall(b"x\n"); self.paused = False; time.sleep(0.1); self._read()
 
